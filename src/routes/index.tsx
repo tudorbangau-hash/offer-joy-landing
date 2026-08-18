@@ -107,7 +107,7 @@ function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: rating }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+        <Star key={i} className="h-4 w-4 fill-apple-gold text-apple-gold" />
       ))}
     </div>
   );
@@ -128,7 +128,7 @@ export default function Index() {
               </div>
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Claim Your{" "}
-                <span className="text-accent">$750</span>{" "}
+                <span className="text-apple-gold">$750</span>{" "}
                 Apple Cash Reward
               </h1>
               <p className="mt-6 text-lg text-white/70 sm:text-xl">
@@ -153,7 +153,7 @@ export default function Index() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <div className="relative w-full max-w-md">
-                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 to-transparent blur-2xl" />
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-apple-gold/20 to-transparent blur-2xl" />
                 <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/15 to-white/5 p-8 shadow-2xl backdrop-blur-xl">
                   <div className="mb-6 flex items-center justify-center">
                     <svg viewBox="0 0 24 24" className="h-16 w-16 text-white" fill="currentColor">
@@ -162,7 +162,7 @@ export default function Index() {
                   </div>
                   <div className="text-center">
                     <p className="text-sm font-medium uppercase tracking-wider text-white/60">Apple Cash Reward</p>
-                    <p className="mt-2 text-6xl font-bold text-accent">$750</p>
+                    <p className="mt-2 text-6xl font-bold text-apple-gold">$750</p>
                     <p className="mt-4 text-white/70">Available for eligible participants today</p>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ export default function Index() {
                 key={step.title}
                 className="group rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-apple-gold/10 text-apple-gold">
                   <step.icon className="h-6 w-6" />
                 </div>
                 <div className="mb-3 text-sm font-semibold text-muted-foreground">Step {index + 1}</div>
@@ -220,7 +220,7 @@ export default function Index() {
                 <StarRating rating={review.rating} />
                 <p className="mt-4 text-card-foreground leading-relaxed">&ldquo;{review.text}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 font-semibold text-accent">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-apple-gold/10 font-semibold text-apple-gold">
                     {review.name.charAt(0)}
                   </div>
                   <div>
