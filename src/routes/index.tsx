@@ -122,10 +122,6 @@ export default function Index() {
         <div className="relative mx-auto max-w-6xl">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="text-center lg:text-left">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-white/80 backdrop-blur-sm">
-                <span className="flex h-2 w-2 rounded-full bg-green-400" />
-                Limited-time offer available now
-              </div>
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Claim Your{" "}
                 <span className="text-apple-gold">$750</span>{" "}
@@ -231,9 +227,6 @@ export default function Index() {
               </div>
             ))}
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
-            Individual results may vary. Testimonials are illustrative and not guaranteed outcomes.
-          </p>
         </div>
       </section>
 
