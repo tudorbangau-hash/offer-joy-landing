@@ -87,7 +87,7 @@ function ClaimButton({
     "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]";
   const variantClasses =
     variant === "primary"
-      ? "bg-accent text-accent-foreground shadow-apple hover:shadow-apple-lg"
+      ? "bg-apple-gold text-apple-dark shadow-apple hover:shadow-apple-lg"
       : "bg-white/10 text-white backdrop-blur-sm border border-white/20 hover:bg-white/20";
 
   return (
