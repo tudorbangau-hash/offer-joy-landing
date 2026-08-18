@@ -231,6 +231,9 @@ export default function Index() {
               </div>
             ))}
           </div>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
+            Individual results may vary. Testimonials are illustrative and not guaranteed outcomes.
+          </p>
         </div>
       </section>
 
