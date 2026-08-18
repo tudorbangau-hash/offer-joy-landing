@@ -117,56 +117,45 @@ function StarRating({ rating }: { rating: number }) {
 function RotatableCard({ children, className = "" }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const isDragging = useRef(false);
-  const lastPosition = useRef({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
-  const startRotation = (clientX: number, clientY: number) => {
-    isDragging.current = true;
-    lastPosition.current = { x: clientX, y: clientY };
+  const handlePointerMove = (clientX: number, clientY: number) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateY = ((x - centerX) / centerX) * 20;
+    const rotateX = -((y - centerY) / centerY) * 20;
+    setRotation({ x: rotateX, y: rotateY });
   };
 
-  const updateRotation = (clientX: number, clientY: number) => {
-    if (!isDragging.current) return;
-    const deltaX = clientX - lastPosition.current.x;
-    const deltaY = clientY - lastPosition.current.y;
-    lastPosition.current = { x: clientX, y: clientY };
-    setRotation((prev) => ({
-      x: prev.x - deltaY * 0.5,
-      y: prev.y + deltaX * 0.5,
-    }));
+  const handleMouseMove = (e: React.MouseEvent) => handlePointerMove(e.clientX, e.clientY);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (touch) handlePointerMove(touch.clientX, touch.clientY);
   };
 
-  const stopRotation = () => {
-    isDragging.current = false;
+  const reset = () => {
+    setIsHovering(false);
+    setRotation({ x: 0, y: 0 });
   };
 
   return (
     <div
       ref={ref}
-      className={`${className} cursor-grab active:cursor-grabbing`}
+      className={`${className} transition-transform duration-300 ease-out`}
       style={{
-        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale3d(${isHovering ? 1.02 : 1}, ${isHovering ? 1.02 : 1}, 1)`,
         transformStyle: "preserve-3d",
-        touchAction: "none",
       }}
-      onMouseDown={(e) => startRotation(e.clientX, e.clientY)}
-      onMouseMove={(e) => updateRotation(e.clientX, e.clientY)}
-      onMouseUp={stopRotation}
-      onMouseLeave={stopRotation}
-      onTouchStart={(e) => {
-        const touch = e.touches[0];
-        if (touch) {
-          startRotation(touch.clientX, touch.clientY);
-        }
-      }}
-      onTouchMove={(e) => {
-        const touch = e.touches[0];
-        if (touch) {
-          e.preventDefault();
-          updateRotation(touch.clientX, touch.clientY);
-        }
-      }}
-      onTouchEnd={stopRotation}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={reset}
+      onTouchStart={() => setIsHovering(true)}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={reset}
     >
       {children}
     </div>
