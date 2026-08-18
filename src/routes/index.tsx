@@ -153,10 +153,16 @@ function RotatableCard({ children, className = "" }: { children: ReactNode; clas
       onMouseMove={(e) => updateRotation(e.clientX, e.clientY)}
       onMouseUp={stopRotation}
       onMouseLeave={stopRotation}
-      onTouchStart={(e) => startRotation(e.touches[0].clientX, e.touches[0].clientY)}
+      onTouchStart={(e) => {
+        if (e.touches.length > 0) {
+          startRotation(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }}
       onTouchMove={(e) => {
-        e.preventDefault();
-        updateRotation(e.touches[0].clientX, e.touches[0].clientY);
+        if (e.touches.length > 0) {
+          e.preventDefault();
+          updateRotation(e.touches[0].clientX, e.touches[0].clientY);
+        }
       }}
       onTouchEnd={stopRotation}
     >
