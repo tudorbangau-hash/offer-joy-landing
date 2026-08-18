@@ -155,3 +155,7 @@
     color: var(--color-foreground);
   }
 }
+
+@utility bg-apple-glow {
+  background: radial-gradient(circle at 50% 0%, oklch(0.72 0.16 85 / 0.25), transparent 60%);
+}
